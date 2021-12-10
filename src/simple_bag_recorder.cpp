@@ -60,7 +60,6 @@ private:
   }
 
   rclcpp::Subscription<rclcpp::SerializedMessage>::SharedPtr subscription_;
-  //std::unique_ptr<rosbag2_cpp::writers::SequentialWriter> writer_;
   std::unique_ptr<rosbag2_cpp::writers::SequentialWriter> recorder_;
 };
 

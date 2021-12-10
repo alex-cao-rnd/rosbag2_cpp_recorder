@@ -26,17 +26,18 @@ include_directories(
 
 
 add_library(RosbagRecorder src/bag_recorder/rosbag_recorder.cpp)
-ament_target_dependencies(RosbagRecorder rclcpp rosbag2_cpp)
+ament_target_dependencies(RosbagRecorder rclcpp rosbag2_cpp ulisse_msgs)
 
 add_executable(simple_bag_recorder src/simple_bag_recorder.cpp)
 ament_target_dependencies(simple_bag_recorder rclcpp rosbag2_cpp)
 
-add_executable(bag_recorder_wrapper src/bag_recorder_wrapper.cpp)
-ament_target_dependencies(bag_recorder_wrapper rclcpp rosbag2_cpp std_srvs ulisse_msgs)
+add_executable(bag_recorder_node src/bag_recorder_node.cpp)
+ament_target_dependencies(bag_recorder_node rclcpp rosbag2_cpp std_srvs ulisse_msgs)
+target_link_libraries(bag_recorder_node RosbagRecorder)
 
 install(TARGETS
   simple_bag_recorder
-  bag_recorder_wrapper
+  bag_recorder_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
